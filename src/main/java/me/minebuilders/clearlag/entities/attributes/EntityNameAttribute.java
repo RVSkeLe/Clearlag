@@ -15,7 +15,9 @@ public class EntityNameAttribute extends EntityAttribute<Entity> {
 
     @Override
     public boolean containsData(Entity entity) {
-        return (!reversed == name.equals(entity.getCustomName()));
+        String entityName = entity.customName().toString();
+        return entityName != null
+                && !reversed == name.equals(entityName);
     }
 
 }

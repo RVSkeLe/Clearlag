@@ -11,6 +11,7 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
+@SuppressWarnings("unused")
 
 public @interface ConfigValue {
 

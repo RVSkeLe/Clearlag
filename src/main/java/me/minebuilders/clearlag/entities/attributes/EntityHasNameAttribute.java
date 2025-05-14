@@ -9,7 +9,7 @@ public class EntityHasNameAttribute extends EntityAttribute<Entity> {
 
     @Override
     public boolean containsData(Entity entity) {
-        return (!reversed == (entity.getCustomName() != null));
+        return (!reversed == (entity.customName() != null));
     }
 
 }
