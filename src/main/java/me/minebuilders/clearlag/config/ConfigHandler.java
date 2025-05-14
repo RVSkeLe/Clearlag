@@ -177,7 +177,7 @@ public class ConfigHandler {
 
                     field.setAccessible(true);
 
-                    ConfigData cd = configValue.valueType().getConfigData();
+                    ConfigData<?> cd = configValue.valueType().getConfigData();
 
                     Object ob = cd.getValue(configValue.path().length() <= 1 ? path + "." + fieldToConfigValue(field) : configValue.path());
 
@@ -185,7 +185,7 @@ public class ConfigHandler {
                         Object tp = field.get(object);
 
                         if (tp != null)
-                            ob = tp.getClass().newInstance();
+                            ob = tp.getClass().getDeclaredConstructor().newInstance();
                     }
 
                     field.set(object, (cd instanceof PrimitiveCV ? ReflectionUtil.castPrimitedValues(field.getType(), ob) : ob));

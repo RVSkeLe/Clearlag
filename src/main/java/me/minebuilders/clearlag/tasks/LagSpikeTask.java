@@ -77,7 +77,7 @@ public class LagSpikeTask extends TaskModule {
 
                     Util.warning("Clearlag has detected a possible lag spike on tick #" + currentTick + " (Tick is currently at " + elapsedTime + " milliseconds)");
 
-                    Util.warning("Thread name: " + mainThread.getName() + " Id: " + mainThread.getId());
+                    Util.warning("Thread name: " + mainThread.getName() + " Id: " + mainThread.threadId());
 
                     Util.warning("Thread state: " + mainThread.getState());
 
