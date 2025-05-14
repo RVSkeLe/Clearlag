@@ -31,7 +31,7 @@ public class CheckChunkCmd extends CommandModule {
         final Map<EntityType, Integer> entityCountMap = new IdentityHashMap<>(100);
 
 
-        for (BlockState bt : c.getTileEntities())
+        for (BlockState bt : c.getTileEntities(false))
             tileEntityCountMap.merge(bt.getClass(), 1, Integer::sum);
 
 

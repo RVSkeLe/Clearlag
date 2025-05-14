@@ -9,7 +9,8 @@ import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.MaterialData;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 @ConfigPath(path = "item-merger")
 public class ItemMergeListener extends EventModule {
@@ -24,7 +25,7 @@ public class ItemMergeListener extends EventModule {
         ItemStack i = event.getEntity().getItemStack();
         Material type = i.getType();
         int c = i.getAmount();
-        MaterialData data = i.getData();
+        ItemMeta data = i.getItemMeta();
 
         for (Entity entity : event.getEntity().getNearbyEntities(radius, radius, radius)) {
 
@@ -32,7 +33,10 @@ public class ItemMergeListener extends EventModule {
 
                 ItemStack ni = ((Item) entity).getItemStack();
 
-                if (!entity.isDead() && type == ni.getType() && data.equals(ni.getData()) && i.getDurability() == ni.getDurability()
+                if (!entity.isDead()
+                        && type == ni.getType()
+                        && data.equals(ni.getItemMeta())
+                        && getItemDamage(i) == getItemDamage(ni)
                         && i.getMaxStackSize() >= (ni.getAmount() + c)) {
 
                     entity.remove();
@@ -44,5 +48,14 @@ public class ItemMergeListener extends EventModule {
             }
         }
     }
+
+    public int getItemDamage(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta instanceof Damageable) {
+            return ((Damageable) meta).getDamage();
+        }
+        return 0;
+    }
+
 
 }
