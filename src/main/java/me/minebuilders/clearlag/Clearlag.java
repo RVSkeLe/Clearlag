@@ -73,7 +73,6 @@ public class Clearlag extends JavaPlugin {
                 new KillmobsCmd(),
                 new ReloadCmd(),
                 new TpChunkCmd(),
-                new UnloadChunksCmd(),
                 new HaltCmd(),
                 new AdminCmd(),
                 new ProfileCmd(),
